@@ -25,4 +25,4 @@ export function metaFor(locale: Locale): Metadata {
   };
 }
 
-export const viewport: Viewport = { themeColor: "#14100d", width: "device-width", initialScale: 1 };
+export const viewport: Viewport = { themeColor: "#14100d", width: "device-width", initialScale: 1, viewportFit: "cover" };

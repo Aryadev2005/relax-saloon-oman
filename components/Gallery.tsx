@@ -6,6 +6,7 @@ import type { Dict } from "@/lib/dict";
 
 export default function Gallery({ t }: { t: Dict }) {
   const [i, setI] = useState<number | null>(null);
+  const [x0, setX0] = useState<number | null>(null);
   const n = gallery.length;
   const go = useCallback((d: number) => setI((x) => (x === null ? x : (x + d + n) % n)), [n]);
   const rtl = t.dir === ("rtl" as string);
@@ -19,9 +20,11 @@ export default function Gallery({ t }: { t: Dict }) {
     };
     document.addEventListener("keydown", k);
     document.body.style.overflow = "hidden";
+    document.body.classList.add("lb-open");
     return () => {
       document.removeEventListener("keydown", k);
       document.body.style.overflow = "";
+      document.body.classList.remove("lb-open");
     };
   }, [i, go, rtl]);
 
@@ -35,7 +38,14 @@ export default function Gallery({ t }: { t: Dict }) {
         ))}
       </div>
       {i !== null && (
-        <div className="lb" role="dialog" aria-modal="true" aria-label={t.gallery.title} onClick={() => setI(null)}>
+        <div className="lb" role="dialog" aria-modal="true" aria-label={t.gallery.title} onClick={() => setI(null)}
+          onTouchStart={(e) => setX0(e.touches[0].clientX)}
+          onTouchEnd={(e) => {
+            if (x0 === null) return;
+            const dx = e.changedTouches[0].clientX - x0;
+            if (Math.abs(dx) > 45) go((dx < 0 ? 1 : -1) * (rtl ? -1 : 1));
+            setX0(null);
+          }}>
           <div className="lb-img" onClick={(e) => e.stopPropagation()}>
             <Image src={gallery[i].src} alt="" width={gallery[i].w} height={gallery[i].h} sizes="92vw" priority />
             <p className="lb-cap">{t.gallery.credit} {gallery[i].credit} · {i + 1}/{n}</p>

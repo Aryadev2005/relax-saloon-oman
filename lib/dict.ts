@@ -117,7 +117,7 @@ const ar: Dict = {
     call: "اتصل بالصالون",
     reviews: "مراجعة على جوجل",
   },
-  status: { openUntil: "مفتوح الآن · حتى", opensAt: "مغلق · يفتح", today: "اليوم", tomorrow: "غدًا", on: "" },
+  status: { openUntil: "مفتوح الآن، حتى", opensAt: "مغلق، يفتح", today: "اليوم", tomorrow: "غدًا", on: "" },
   facts: [
     { k: "٤٫٦ ★", v: "١٢٠ مراجعة على جوجل" },
     { k: "٧ أيام", v: "مفتوح كل أيام الأسبوع" },

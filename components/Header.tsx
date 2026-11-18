@@ -13,6 +13,7 @@ export default function Header({ t }: { t: Dict }) {
   }, []);
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
+    document.body.classList.toggle("menu-open", open);
   }, [open]);
   const other = t.locale === "en" ? "/ar" : "/";
   const links: [string, string][] = [

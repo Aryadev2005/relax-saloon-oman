@@ -80,7 +80,7 @@ export default function Site({ locale }: { locale: Locale }) {
             </div>
             <div className="hero-meta">
               <a className="pill" href={salon.reviewsLink} target="_blank" rel="noopener">
-                <Stars n={5} /> <b>{locale === "ar" ? "٤٫٦" : salon.rating}</b> · {locale === "ar" ? "١٢٠" : salon.reviewCount} {t.hero.reviews}
+                <Stars n={5} /> <b>{locale === "ar" ? "٤٫٦" : salon.rating}</b>{locale === "ar" ? " | " : " · "}{locale === "ar" ? "١٢٠" : salon.reviewCount} {t.hero.reviews}
               </a>
               <OpenStatus t={t} className="pill" />
             </div>
@@ -203,7 +203,7 @@ export default function Site({ locale }: { locale: Locale }) {
                     <span className="av" aria-hidden="true">{r.name[0].toUpperCase()}</span>
                     <span>
                       <b>{r.name.replace(/\b\w/g, (c) => c.toUpperCase())}</b>
-                      <small>Google · {r.when[locale]}</small>
+                      <small>Google{locale === "ar" ? " | " : " · "}{r.when[locale]}</small>
                     </span>
                   </figcaption>
                 </figure>
